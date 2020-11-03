@@ -1,0 +1,42 @@
+{
+  "name": "@lycolia/value-domain-dns-cert-register",
+  "version": "0.0.1",
+  "description": "Automatically add dns certificates for value-domain using on certbot manual mode",
+  "keywords": [
+    "automation",
+    "certbot",
+    "value-domain",
+    "dns"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lycolia/value-domain-dns-cert-register"
+  },
+  "bin": {
+    "vddcr": "./src/index.js"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "node inspect-brk ./src/index.js",
+    "test": "npx jest"
+  },
+  "author": "Lycolia",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "chalk": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^13.9.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "http-server": "^0.12.3",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1"
+  }
+}
