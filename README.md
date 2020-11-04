@@ -9,18 +9,6 @@
 
 `npm i -g @lycolia/value-domain-dns-cert-register`
 
-## Create config
-
-```sh
-mkdir ~/.vddcr/
-cat <<EOF > ~/.vddcr/config.json
-{
-  "rootDomain": "[root-domain]",
-  "vdToken": "[value-domain access token]"
-}
-EOF
-```
-
 ## Create ACME account
 
 `certbot register`
@@ -31,7 +19,7 @@ EOF
 sudo certbot certonly --manual -n \
 --preferred-challenges dns \
 --agree-tos -m [email]\
---manual-auth-hook "vddcr [username]" \
+--manual-auth-hook "vddcr [root-domain-name] [Value-Domain-access-token]" \
 --manual-public-ip-logging-ok \
 -d dev.lycolia.info
 ```
