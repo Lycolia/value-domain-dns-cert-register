@@ -2,3 +2,4 @@ node_modules
 dist
 .env
 cert-test.sh
+serve-https-test.sh
