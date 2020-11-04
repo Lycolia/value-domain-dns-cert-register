@@ -33,3 +33,9 @@ sudo certbot certonly --manual -n \
 --manual-public-ip-logging-ok \
 -d dev.lycolia.info
 ```
+
+## CLI Options
+
+- `vddcr [root-domain-name] [Value-Domain-access-token]`
+  - `[root-domain-name]` is `/domains/{domain}/dns` on `{domain}`
+  - `[Value-Domain-access-token]` is [Value Domain API KEY](https://www.value-domain.com/vdapi/)
