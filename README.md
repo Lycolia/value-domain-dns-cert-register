@@ -1,6 +1,6 @@
 # Value Domain DNS Cert Register
 
-This is Certbot Manual mode DNS records register for Value Domain!
+- This is Certbot Manual DNS-01 Challenge register for Value Domain!
 
 ## Required
 
