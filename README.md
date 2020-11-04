@@ -1,24 +1,34 @@
+# Value Domain DNS Cert Register
+
+This is Certbot Manual mode DNS records register for Value Domain!
+
 ## Required
 
 - Linux
-  - Does not support windows
+  - Does not support Windows
 - [certbot](https://certbot.eff.org/)
 - Node.js 12+
 
-## Install vddcr
+## Install Value Domain DNS Cert Register
 
 `npm i -g @lycolia/value-domain-dns-cert-register`
 
-## Create ACME account
+## How to use
 
-`certbot register`
+### 1. Create ACME account
 
-## Example certbot commands
+- Run the following command -> `certbot register`
+
+### 2. Get Value Domain Access Token
+
+- [GET API KEY!](https://www.value-domain.com/vdapi/)
+
+### 3. Run this CLI with following certbot commands
 
 ```sh
 sudo certbot certonly --manual -n \
 --preferred-challenges dns \
---agree-tos -m [email]\
+--agree-tos -m [your-email] \
 --manual-auth-hook "vddcr [root-domain-name] [Value-Domain-access-token]" \
 --manual-public-ip-logging-ok \
 -d dev.lycolia.info
