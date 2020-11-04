@@ -1,6 +1,6 @@
 # Value Domain DNS Cert Register
 
-- This is Certbot DNS-01 Challenge auto-register for Value Domain!
+- This is Certbot DNS-01 Challenge auto-register for Value-Domain!
 
 ## Required
 
@@ -34,13 +34,24 @@ sudo certbot certonly --manual -n \
 -d [your-domain]
 ```
 
+### 4. Task scheduling
+
+- If want scheduled run, register above commands in crontab!
+
 ## CLI Options
 
 - `vddcr [root-domain-name] [Value-Domain-access-token]`
   - `[root-domain-name]` is `/domains/{domain}/dns` on `{domain}`
-  - `[Value-Domain-access-token]` is [Value Domain API KEY](https://www.value-domain.com/vdapi/)
+    - [see also](https://www.value-domain.com/api/doc/domain/#tag/DNS/paths/~1domains~1dns/get)
+  - `[Value-Domain-access-token]` is [Value-Domain API KEY](https://www.value-domain.com/vdapi/)
 
-## Certbot reference
+## Reference
+
+### Value-Domain
+
+- [Value-Domain API Document (1.0.0)](https://www.value-domain.com/api/doc/domain/)
+
+### Certbot
 
 - [Pre and Post Validation Hooks](https://certbot.eff.org/docs/using.html?highlight=dns#pre-and-post-validation-hooks)
 - [Certbot command-line options](https://certbot.eff.org/docs/using.html?highlight=dns#certbot-command-line-options)
