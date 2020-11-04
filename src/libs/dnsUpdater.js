@@ -50,25 +50,20 @@ const setRecord = async (dns, conf) => {
 };
 
 /**
- * @param {{domainid: number, domainname: string, ns_type: string, records: string, ttl: string}} dns
- * @param {{rootDomain: string, vdToken: string, targetDomain: string, acmeDomain: string, acmeText: string}} conf
- * @returns {{domainid: number, domainname: string, ns_type: string, records: string, ttl: string}}
+ * @param {string} dnsRecords
+ * @param {string} acmeDomain
+ * @param {string} acmeText
+ * @returns {string}
  */
-const replaceSignature = (dns, conf) => {
-  const regdAcmeDomain = conf.acmeDomain.replace(/\./g, '\\.');
+const replaceRecords = (dnsRecords, acmeDomain, acmeText) => {
+  const regdAcmeDomain = acmeDomain.replace(/\./g, '\\.');
   const pattern = new RegExp(`txt ${regdAcmeDomain}.+?\\n`);
-  const replacedRecords = dns.records.replace(pattern, '');
-  return {
-    domainid: dns.domainid,
-    domainname: dns.domainname,
-    ns_type: dns.ns_type,
-    records: `${replacedRecords}\n${conf.acmeText}`,
-    ttl: dns.ttl,
-  };
+  const replacedRecords = dnsRecords.replace(pattern, '');
+  return `${replacedRecords}\n${acmeText}`;
 };
 
 module.exports = {
   getRecord,
   setRecord,
-  replaceSignature,
+  replaceRecords,
 };

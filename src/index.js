@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 const { errorLog } = require('./libs/log');
-const { getUsername } = require('./libs/argumentGetter');
-const { getConfig, createConfig } = require('./libs/configGenerator');
-const { getRecord, setRecord, replaceSignature } = require('./libs/dnsUpdater');
+const { getConfig } = require('./libs/configGenerator');
+const { getRecord, setRecord, replaceRecords } = require('./libs/dnsUpdater');
 
 /**
  * TODO
@@ -19,13 +18,7 @@ const { getRecord, setRecord, replaceSignature } = require('./libs/dnsUpdater');
  *
  */
 
-const username = getUsername();
-if (!username) {
-  errorLog('invalid argument');
-  process.exit(1);
-}
-
-const conf = getConfig(username);
+const conf = getConfig();
 if (!conf) {
   errorLog('invalid configration', conf);
   process.exit(1);
@@ -36,6 +29,6 @@ getRecord(conf).then((dns) => {
     errorLog('get dns record failed', conf);
     process.exit(2);
   }
-  const newDns = replaceSignature(dns, conf);
-  setRecord(newDns, conf);
+  dns.records = replaceRecords(dns.records, conf.acmeDomain, conf.acmeText);
+  setRecord(dns, conf);
 });

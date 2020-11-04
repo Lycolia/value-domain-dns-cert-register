@@ -2,7 +2,7 @@ const { createConfig } = require('../src/libs/configGenerator');
 const {
   getRecord,
   setRecord,
-  replaceSignature,
+  replaceRecords,
 } = require('../src/libs/dnsUpdater');
 require('dotenv').config();
 
@@ -72,7 +72,12 @@ txt _acme-challenge.test.sub 23456`;
       records: records,
       ttl: '60',
     };
-    const newDns = replaceSignature(oldDns, replaceTestConf);
+    const newDns = { ...oldDns };
+    newDns.records = replaceRecords(
+      oldDns.records,
+      replaceTestConf.acmeDomain,
+      replaceTestConf.acmeText
+    );
 
     const toBeRecords = `a @ 0.0.0.0
 mx @ 10
