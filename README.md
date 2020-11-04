@@ -1,4 +1,4 @@
-# Value Domain DNS Cert Register
+# Value-Domain DNS Cert Register
 
 - This is Certbot DNS-01 Challenge auto-register for Value-Domain!
 
