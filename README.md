@@ -39,3 +39,8 @@ sudo certbot certonly --manual -n \
 - `vddcr [root-domain-name] [Value-Domain-access-token]`
   - `[root-domain-name]` is `/domains/{domain}/dns` on `{domain}`
   - `[Value-Domain-access-token]` is [Value Domain API KEY](https://www.value-domain.com/vdapi/)
+
+## Certbot reference
+
+- [Pre and Post Validation Hooks](https://certbot.eff.org/docs/using.html?highlight=dns#pre-and-post-validation-hooks)
+- [Certbot command-line options](https://certbot.eff.org/docs/using.html?highlight=dns#certbot-command-line-options)
