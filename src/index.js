@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const { errorLog } = require('./libs/log');
-const { getConfig } = require('./libs/configGenerator');
+const { getUsername } = require('./libs/argumentGetter');
+const { getConfig, createConfig } = require('./libs/configGenerator');
 const { getRecord, setRecord, replaceSignature } = require('./libs/dnsUpdater');
 
 /**
@@ -18,7 +19,13 @@ const { getRecord, setRecord, replaceSignature } = require('./libs/dnsUpdater');
  *
  */
 
-const conf = getConfig();
+const username = getUsername();
+if (!username) {
+  errorLog('invalid argument');
+  process.exit(1);
+}
+
+const conf = getConfig(username);
 if (!conf) {
   errorLog('invalid configration', conf);
   process.exit(1);

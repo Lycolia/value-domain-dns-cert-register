@@ -1,5 +1,4 @@
 const {
-  getArguments,
   createAcmeDomain,
   createAcmeText,
   createConfig,
@@ -9,31 +8,6 @@ const rootDomain = 'example.com';
 const vdToken = 'AbCdEf123456';
 const targetDomain = 'sub.example.com';
 const acmeText = '734f41ed7b79b695df2d16103e1144a0';
-
-describe('get cli arguments', function () {
-  beforeEach(() => {
-    // reset argv
-    process.argv = process.argv.slice(0, 2);
-  });
-  it('no arguments', function () {
-    const argv = getArguments();
-
-    expect(argv).toBeUndefined();
-  });
-  it('1 arguments', function () {
-    process.argv.push('example.com');
-    const argv = getArguments();
-
-    expect(argv).toBeUndefined();
-  });
-  it('2 arguments', function () {
-    process.argv.push('example.com');
-    process.argv.push('AbCdEf123456');
-    const argv = getArguments();
-
-    expect(argv).not.toBeUndefined();
-  });
-});
 
 describe('create signed target domain', function () {
   it('sub domain', function () {

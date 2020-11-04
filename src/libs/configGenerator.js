@@ -1,18 +1,12 @@
+const { existsSync, readFileSync } = require('fs');
 const { errorLog } = require('./log');
 
 /**
- * @returns {{rootDomain: string, vdToken: string}|void}
+ * @param {string} username
+ * @returns {string}
  */
-const getArguments = () => {
-  if (process.argv.length > 3) {
-    const [, , rootDomain, accessToken] = process.argv;
-    return {
-      rootDomain: rootDomain.trim(),
-      vdToken: accessToken.trim(),
-    };
-  } else {
-    errorLog('Required 2 argument: vddcr [rootDomain] [accessToken]');
-  }
+const getConfPath = (username) => {
+  return `/home/${username}/.vddcr/config.json`;
 };
 
 /**
@@ -59,25 +53,37 @@ const createConfig = (rootDomain, vdToken, targetDomain, acmeText) => {
 };
 
 /**
+ * @param {string} username
  * @returns {{rootDomain: string, vdToken: string, targetDomain: string, acmeDomain: string, acmeText: string}|void}
  */
-const getConfig = () => {
-  /** @type {{rootDomain: string, vdToken: string}|void} */
-  const argv = getArguments();
-  if (!argv || !process.env.CERTBOT_DOMAIN || !process.env.CERTBOT_VALIDATION) {
-    return;
-  }
+const getConfig = (username) => {
+  const confPath = getConfPath(username);
+  if (existsSync(confPath)) {
+    const buff = readFileSync(confPath).toString();
+    /** @type {{rootDomain?: string, vdToken?: string}} */
+    const conf = { ...JSON.parse(buff) };
 
-  return createConfig(
-    argv.rootDomain,
-    argv.vdToken,
-    process.env.CERTBOT_DOMAIN,
-    process.env.CERTBOT_VALIDATION
-  );
+    if (
+      !conf.rootDomain ||
+      !conf.vdToken ||
+      !process.env.CERTBOT_DOMAIN ||
+      !process.env.CERTBOT_VALIDATION
+    ) {
+      return;
+    }
+
+    return createConfig(
+      conf.rootDomain,
+      conf.vdToken,
+      process.env.CERTBOT_DOMAIN,
+      process.env.CERTBOT_VALIDATION
+    );
+  } else {
+    errorLog('config path does not exists', confPath);
+  }
 };
 
 module.exports = {
-  getArguments,
   createAcmeDomain,
   createAcmeText,
   createConfig,
