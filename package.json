@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/value-domain-dns-cert-register",
-  "version": "0.0.1",
+  "version": "0.0.1-1",
   "description": "Automatically add dns certificates for value-domain using on certbot manual mode",
   "keywords": [
     "automation",
@@ -8,6 +8,9 @@
     "value-domain",
     "dns"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Lycolia/value-domain-dns-cert-register"

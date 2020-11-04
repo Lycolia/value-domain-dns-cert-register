@@ -31,7 +31,7 @@ sudo certbot certonly --manual -n \
 --agree-tos -m [your-email] \
 --manual-auth-hook "vddcr [root-domain-name] [Value-Domain-access-token]" \
 --manual-public-ip-logging-ok \
--d dev.lycolia.info
+-d [your-domain]
 ```
 
 ## CLI Options
