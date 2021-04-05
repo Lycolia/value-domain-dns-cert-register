@@ -30,7 +30,6 @@ sudo certbot certonly --manual -n \
 --preferred-challenges dns \
 --agree-tos -m [your-email] \
 --manual-auth-hook "vddcr [root-domain-name] [Value-Domain-access-token]" \
---manual-public-ip-logging-ok \
 -d [your-domain]
 ```
 
