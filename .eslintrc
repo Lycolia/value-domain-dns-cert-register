@@ -1,7 +1,17 @@
 {
-  "extends": ["plugin:prettier/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/style",
+    "plugin:jest/recommended",
+    "prettier",
+    "@lycolia/eslint-config"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "script"
+    "project": "./tsconfig.json"
   }
 }
