@@ -1,28 +1,23 @@
-import { DnsEditor } from 'src/libs/DnsReplacer/DnsEditor';
+import { AcmeConfig } from 'src/types/AcmeConfig';
 
-/**
- * @param vdDnsRecords
- * @param acmeDomain _acme-challenge
- * @param acmeTxtData XXXXX-XXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXXXXXXX
- */
-const replaceDns = (
-  vdDnsRecords: string,
-  acmeDomain: string,
-  acmeTxtData: string
-) => {
-  if (DnsEditor.isApexDomain(acmeDomain)) {
-    return DnsEditor.replaceApexDomainRecords(
-      vdDnsRecords,
-      acmeDomain,
-      acmeTxtData
-    );
-  } else {
-    return DnsEditor.replaceSubDomainRecords(
-      vdDnsRecords,
-      acmeDomain,
-      acmeTxtData
-    );
-  }
+const splitRecords = (records: string) => {
+  return records.split('\n');
 };
 
-export const DnsReplacer = { replaceDns };
+const joinRecords = (records: string[]) => {
+  return records.join('\n');
+};
+
+const replaceDnsRecords = (records: string, acmeConfig: AcmeConfig) => {
+  const recordsArray = splitRecords(records);
+  const replacedRecordArray = recordsArray.map((record) => {
+    const pattern = new RegExp(`^txt\\s+${acmeConfig.acmeDomainName}\\s+\\S+$`);
+    if (record.match(pattern) !== null) {
+      return `txt ${acmeConfig.acmeDomainName} ${acmeConfig.acmeValidationText}`;
+    }
+    return record;
+  });
+
+  return joinRecords(replacedRecordArray);
+};
+export const DnsReplacer = { replaceDnsRecords };

@@ -1,4 +1,5 @@
 export type ValueDomainPayload = {
+  /** @example example.com */
   rootDomain: string;
   accessToken: string;
 };

@@ -5,7 +5,6 @@ import { AppInput } from 'src/libs/App/AppInput';
 import { AppError } from 'src/libs/App/AppError';
 import { AppExit } from 'src/libs/App/AppExit';
 import { Acme } from 'src/libs/Acme';
-import { DnsEditor } from 'src/libs/DnsReplacer/DnsEditor';
 import { VdDnsApi } from 'src/libs/VdDnsApi';
 import { DnsReplacer } from 'src/libs/DnsReplacer';
 
@@ -18,9 +17,11 @@ if (AppError.isError(certbot)) {
   AppExit.exit(certbot);
 }
 
-const acmeDomain = Acme.createAcmeDomain(vd.rootDomain, certbot.targetDomain);
-
-const getReplacedData = 
+const acmeConfig = Acme.createAcmeConfig(
+  vd.rootDomain,
+  certbot.targetDomain,
+  certbot.validationText
+);
 
 const update = async () => {
   const dns = await VdDnsApi.getDnsRecord(vd);
@@ -28,14 +29,11 @@ const update = async () => {
     AppExit.exit(dns);
   }
 
-  const r = DnsReplacer.replaceDns(dns.results.records, acmeDomain, certbot.validationText)
+  const replacedDns = DnsReplacer.replaceDnsRecords(dns.records, acmeConfig);
 
-  getRecord(conf).then((dns) => {
-    if (dns === null) {
-      Log.error('get dns record failed', conf);
-      process.exit(2);
-    }
-    dns.records = replaceRecords(dns.records, conf.acmeDomain, conf.acmeText);
-    setRecord(dns, conf);
-  });
+  // update
+  // end
 };
+
+// FIXME
+//update.then
