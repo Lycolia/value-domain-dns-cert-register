@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { Log } from 'src/libs/App/Log';
 import { AppInput } from 'src/libs/App/AppInput';
 import { AppError } from 'src/libs/App/AppError';
 import { AppExit } from 'src/libs/App/AppExit';
@@ -30,10 +29,24 @@ const update = async () => {
   }
 
   const replacedDns = DnsReplacer.replaceDnsRecords(dns.records, acmeConfig);
-
-  // update
-  // end
+  return await VdDnsApi.setDnsRecord(vd, {
+    domainid: dns.domainid,
+    domainname: dns.domainname,
+    ns_type: dns.ns_type,
+    records: replacedDns,
+    ttl: dns.ttl,
+  });
 };
 
-// FIXME
-//update.then
+update()
+  .then((result) => {
+    if (AppError.isError(result)) {
+      AppExit.exit(result);
+    } else {
+      console.log('FINISH', result);
+    }
+  })
+  .catch((err) => {
+    console.error('予期せぬエラーが発生しました', err);
+    process.exit(1);
+  });

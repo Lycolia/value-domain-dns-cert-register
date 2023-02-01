@@ -43,7 +43,7 @@ const setDnsRecord = async (
     );
 
     Log.info('Updated DNS records', JSON.stringify(data.results));
-    return data.results;
+    return data.results as ValueDomainResultResponse;
   } catch (err) {
     return AppError.createError(ErrorReason.failUpdateDnsRecord, err);
   }
