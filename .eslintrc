@@ -1,5 +1,12 @@
 {
-  "extends": ["plugin:prettier/recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/style",
+    "plugin:jest/recommended",
+    "@lycolia/eslint-config",
+    "prettier"
+  ],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "script"
