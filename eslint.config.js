@@ -2,7 +2,6 @@ const eslint = require('@eslint/js');
 const eslintTypeScript = require('typescript-eslint');
 const eslintJest = require('eslint-plugin-jest');
 const eslintLycolia = require('@lycolia/eslint-config');
-const eslintPrettier = require('eslint-config-prettier');
 
 module.exports = eslintTypeScript.config(
   eslint.configs.recommended,
@@ -10,7 +9,6 @@ module.exports = eslintTypeScript.config(
   eslintJest.configs['flat/style'],
   eslintJest.configs['flat/recommended'],
   eslintLycolia,
-  eslintPrettier,
   {
     ignores: [
       'dist/*',
@@ -20,6 +18,9 @@ module.exports = eslintTypeScript.config(
       '/src/type',
       '*.config.js'
     ],
+    rules: {
+      semi: ['error', 'always']
+    },
     languageOptions: {
       parser: eslintTypeScript.parser,
       parserOptions: {
