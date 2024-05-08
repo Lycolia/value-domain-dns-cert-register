@@ -1,7 +1,13 @@
 import { getErrorOrExit } from '../GetErrorOrExit';
 import { MyError } from '../MyError';
 
-export const reThrowOrExit = (
+type ReThrowOrExitFunc = (
+  message: string,
+  exitCode: number,
+  cause?: unknown
+) => never;
+
+export const reThrowOrExit: ReThrowOrExitFunc = (
   message: string,
   exitCode: number,
   cause?: unknown
