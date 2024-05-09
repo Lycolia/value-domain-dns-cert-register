@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Logger } from '../Logger';
-import { VdDnsUpdateRequest } from '../../types/VdDnsAPI';
+import { VdDnsAPIResponse, VdDnsUpdateRequest } from '../../types/VdDnsAPI';
 import {
   GetDnsRecordsError,
   UpdateDnsRecordsError,
@@ -9,16 +9,25 @@ import { reThrowOrExit } from '../ReThrowOrExit';
 
 const baseUrl = 'https://api.value-domain.com/v1';
 
-export const requestGetRecords = async (
+/**
+ *
+ * {
+ * domainid: number, domainname: string, ns_type: string, records: string, ttl: string
+ * }
+ */
+export const requestGetDnsConf = async (
   rootDomain: string,
   apiToken: string
 ) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/domains/${rootDomain}/dns`, {
-      headers: {
-        Authorization: `Bearer ${apiToken}`,
-      },
-    });
+    const { data } = await axios.get<VdDnsAPIResponse>(
+      `${baseUrl}/domains/${rootDomain}/dns`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        },
+      }
+    );
 
     Logger.info('Got DNS records', JSON.stringify(data.results));
     return data.results;
@@ -27,7 +36,7 @@ export const requestGetRecords = async (
   }
 };
 
-export const requestUpdateRecords = async (
+export const requestUpdateDnsConf = async (
   rootDomain: string,
   apiToken: string,
   updateRecords: VdDnsUpdateRequest
