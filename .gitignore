@@ -1,5 +1,9 @@
-node_modules
-dist
+node_modules/
+coverage/
+dist/
+
+# misc
 .env
-cert-test.sh
-serve-https-test.sh
+.DS_Store
+*.pem
+tsconfig.tsbuildinfo
