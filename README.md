@@ -32,7 +32,7 @@ certbot register
 
 ### 3. 本スクリプトの実行
 
-`[hoge]`の様になってる箇所を適当に埋め、以下のコマンドを実行。
+`<hoge>`の様になってる箇所を適当に埋め、以下のコマンドを実行。
 
 ```sh
 sudo certbot certonly --manual -n \
