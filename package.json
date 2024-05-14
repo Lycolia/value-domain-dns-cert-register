@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/value-domain-dns-cert-register",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Automatically add dns certificates for value-domain using on certbot manual mode",
   "keywords": [
     "automation",
@@ -27,6 +27,7 @@
     "build": "npm run type-check && npm run build-ts",
     "build-ts": "rm -Rf dist/ && swc src/ --config-file .swcrc_build -d dist/",
     "test": "jest --watch",
+    "headless-test": "jest --colors",
     "coverage": "jest --coverage"
   },
   "dependencies": {
