@@ -37,19 +37,19 @@ certbot register
 ```sh
 sudo certbot certonly --manual -n \
   --preferred-challenges dns \
-  --agree-tos -m <EMAIL> \
-  --manual-auth-hook "vddcr <ROOT_DOMAIN> <VD_API_KEY>" \
-  -d <TARGET_DOMAIN>
+  --agree-tos -m <your-email> \
+  --manual-auth-hook "vddcr <root-domain> <value-domain-api-key>" \
+  -d <target-domain>
 ```
 
 **上記コマンドの各項目の入力内容**
 
-| 項目名        | 入力内容                                                                                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EMAIL         | ACMEアカウントのメールアドレス                                                                                                                          |
-| ROOT_DOMAIN   | [DNS設定の取得](https://www.value-domain.com/api/doc/domain/#tag/DNS/paths/~1domains~1{domain}~1dns/get)にある`/domains/{domain}/dns`の`{domain}`の部分 |
-| VD_API_KEY    | [Value DomainのAPI KEY](https://www.value-domain.com/vdapi/)                                                                                            |
-| TARGET_DOMAIN | 証明書を発行したいドメイン                                                                                                                              |
+| 項目名               | 入力内容                                                                                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| your-email           | ACMEアカウントのメールアドレス                                                                                                                          |
+| root-domain          | [DNS設定の取得](https://www.value-domain.com/api/doc/domain/#tag/DNS/paths/~1domains~1{domain}~1dns/get)にある`/domains/{domain}/dns`の`{domain}`の部分 |
+| value-domain-api-key | [Value DomainのAPI KEY](https://www.value-domain.com/vdapi/)                                                                                            |
+| target-domain        | 証明書を発行したいドメイン                                                                                                                              |
 
 **コマンドの入力例**
 
@@ -67,12 +67,11 @@ sudo certbot certonly --manual -n \
 
 ## 本スクリプトの実行方法
 
-基本的には`vddcr [root-domain-name] [Value-Domain-access-token]`として実行できます。
+単体で実行することはないと思いますが一応。
 
-- `vddcr [root-domain-name] [Value-Domain-access-token]`
-  - `[root-domain-name]` is `/domains/{domain}/dns` on `{domain}`
-    - [see also](https://www.value-domain.com/api/doc/domain/#tag/DNS/paths/~1domains~1dns/get)
-  - `[Value-Domain-access-token]` is [Value-Domain API KEY](https://www.value-domain.com/vdapi/)
+基本的には`vddcr [root-domain] [value-domain-api-key]`として実行できます。
+
+また実行時に`CERTBOT_DOMAIN`と`CERTBOT_VALIDATION`の二つの環境変数が必要です。この環境変数の内容についてはcertbotのドキュメントを参照してください。
 
 ## 参考サイト
 
