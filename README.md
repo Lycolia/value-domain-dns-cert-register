@@ -77,7 +77,7 @@ sudo certbot certonly --manual -n \
 
 ### Value Domain
 
-- [Value-Domain API Document (1.0.0)](https://www.value-domain.com/api/doc/domain/)
+- [バリュードメインAPIドキュメント (1.0.0)](https://www.value-domain.com/api/doc/domain/)
 
 ### Certbot
 
