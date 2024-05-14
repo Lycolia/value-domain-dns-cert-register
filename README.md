@@ -69,7 +69,7 @@ sudo certbot certonly --manual -n \
 
 単体で実行することはないと思いますが一応。
 
-基本的には`vddcr [root-domain] [value-domain-api-key]`として実行できます。
+基本的には`vddcr <root-domain> <value-domain-api-key>`として実行できます。
 
 また実行時に`CERTBOT_DOMAIN`と`CERTBOT_VALIDATION`の二つの環境変数が必要です。この環境変数の内容についてはcertbotのドキュメントを参照してください。
 
@@ -77,7 +77,7 @@ sudo certbot certonly --manual -n \
 
 ### Value Domain
 
-- [Value-Domain API Document (1.0.0)](https://www.value-domain.com/api/doc/domain/)
+- [バリュードメインAPIドキュメント (1.0.0)](https://www.value-domain.com/api/doc/domain/)
 
 ### Certbot
 
