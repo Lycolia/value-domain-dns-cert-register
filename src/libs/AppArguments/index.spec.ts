@@ -1,4 +1,5 @@
 import { getArguments } from '.';
+import { version } from '../../../package.json';
 
 describe('getArguments', () => {
   it('コマンドライン引数がない場合', () => {
@@ -18,7 +19,7 @@ describe('getArguments', () => {
 
     expect(actual).toStrictEqual({
       rootDomain: 'example.com',
-      apiToken: 'piyo'
+      apiToken: 'piyo',
     });
   });
 
@@ -27,7 +28,17 @@ describe('getArguments', () => {
 
     expect(actual).toStrictEqual({
       rootDomain: 'example.com',
-      apiToken: 'piyo'
+      apiToken: 'piyo',
     });
+  });
+
+  it('バージョン出力オプションが指定された時、バージョンを出力して終了すること', () => {
+    const spiedConsoleLog = jest.spyOn(console, 'log');
+    const spiedExit = jest.spyOn(process, 'exit').mockImplementation();
+
+    getArguments(['', '', '-V']);
+
+    expect(spiedConsoleLog).toHaveBeenCalledWith(version);
+    expect(spiedExit).toHaveBeenCalled();
   });
 });
