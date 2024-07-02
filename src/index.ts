@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { getArguments } from './libs/AppArguments';
 import { createAcmeContext } from './libs/EnviromentsVariables';
 import { MyError } from './libs/MyError';
