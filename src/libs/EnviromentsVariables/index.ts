@@ -36,7 +36,7 @@ export const createAcmeContext = (
 ) => {
   const env = getEnvVar(procEnv);
   const acmeDomain = createAcmeDomain(rootDomain, env.certbotDomain);
-  const acmeRecord = createAcmeRecord(env.certbotDomain, env.certbotValidation);
+  const acmeRecord = createAcmeRecord(acmeDomain, env.certbotValidation);
 
   return {
     acmeDomain,

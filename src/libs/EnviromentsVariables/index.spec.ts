@@ -34,14 +34,14 @@ describe('createAcmeContext', () => {
 
     const actual = createAcmeContext('hoge', {
       CERTBOT_DOMAIN: 'piyo',
-      CERTBOT_VALIDATION: 'fuga'
+      CERTBOT_VALIDATION: 'fuga',
     });
 
     expect(spiedCreateAcmeDomain).toHaveBeenCalledWith('hoge', 'piyo');
-    expect(spiedCreateAcmeRecord).toHaveBeenCalledWith('piyo', 'fuga');
+    expect(spiedCreateAcmeRecord).toHaveBeenCalledWith('abc', 'fuga');
     expect(actual).toStrictEqual({
       acmeDomain: 'abc',
-      acmeRecord: '123'
+      acmeRecord: '123',
     });
   });
 });
