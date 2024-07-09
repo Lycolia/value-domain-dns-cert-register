@@ -2,6 +2,7 @@
 
 import { getArguments } from './libs/AppArguments';
 import { createAcmeContext } from './libs/EnviromentsVariables';
+import { Logger } from './libs/Logger';
 import { MyError } from './libs/MyError';
 import { createOrUpdateRecords } from './libs/RecordManipulator';
 import {
@@ -9,8 +10,10 @@ import {
   requestUpdateDnsConf,
 } from './libs/ValueDomainClient';
 import { UnknownError } from './resources/ErrorDefines';
+import pkg from '../package.json';
 
 const main = async () => {
+  Logger.info(`${pkg.name} ${pkg.version}`);
   const args = getArguments(process.argv);
   const acme = createAcmeContext(args.rootDomain, process.env);
 
