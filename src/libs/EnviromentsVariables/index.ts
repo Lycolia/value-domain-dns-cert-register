@@ -4,21 +4,21 @@ import {
   EnvVarNotExistCertbotValidationError,
 } from '../../resources/ErrorDefines';
 import { createAcmeDomain, createAcmeRecord } from '../Acme';
-import { reThrowOrExit } from '../ReThrowOrExit';
+import { reThrow } from '../ReThrow';
 
 const getEnvVar = (procEnv: typeof process.env) => {
   if (
     procEnv.CERTBOT_DOMAIN === undefined &&
     procEnv.CERTBOT_VALIDATION === undefined
   ) {
-    reThrowOrExit(EnvVarNotExistAllError.message, EnvVarNotExistAllError.code);
+    reThrow(EnvVarNotExistAllError.message, EnvVarNotExistAllError.code);
   } else if (procEnv.CERTBOT_DOMAIN === undefined) {
-    reThrowOrExit(
+    reThrow(
       EnvVarNotExistCertbotDomainError.message,
       EnvVarNotExistCertbotDomainError.code
     );
   } else if (procEnv.CERTBOT_VALIDATION === undefined) {
-    reThrowOrExit(
+    reThrow(
       EnvVarNotExistCertbotValidationError.message,
       EnvVarNotExistCertbotValidationError.code
     );

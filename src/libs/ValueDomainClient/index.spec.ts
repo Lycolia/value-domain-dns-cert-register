@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { requestGetDnsConf, requestUpdateDnsConf } from '.';
-import * as ReThrowOrExit from '../ReThrowOrExit';
+import * as ReThrow from '../ReThrow';
 import {
   GetDnsRecordsError,
   UpdateDnsRecordsError,
 } from '../../resources/ErrorDefines';
 
 jest.mock('axios');
-jest.mock('../ReThrowOrExit');
+jest.mock('../ReThrow');
 
 describe('requestGetDnsConf', () => {
   it('正しいURLとHeaderでリクエストされること', async () => {
@@ -28,11 +28,11 @@ describe('requestGetDnsConf', () => {
   it('例外がスローされたとき、リスローが呼ばれること', async () => {
     const err = new Error('hoge');
     jest.spyOn(axios, 'get').mockRejectedValue(err);
-    const spiedReThrowOrExit = jest.spyOn(ReThrowOrExit, 'reThrowOrExit');
+    const spiedReThrow = jest.spyOn(ReThrow, 'reThrow');
 
     await requestGetDnsConf('example.com', 'XXXX');
 
-    expect(spiedReThrowOrExit).toHaveBeenCalledWith(
+    expect(spiedReThrow).toHaveBeenCalledWith(
       GetDnsRecordsError.message,
       GetDnsRecordsError.code,
       err
@@ -66,7 +66,7 @@ describe('requestUpdateDnsConf', () => {
   it('例外がスローされたとき、リスローが呼ばれること', async () => {
     const err = new Error('hoge');
     jest.spyOn(axios, 'put').mockRejectedValue(err);
-    const spiedReThrowOrExit = jest.spyOn(ReThrowOrExit, 'reThrowOrExit');
+    const spiedReThrow = jest.spyOn(ReThrow, 'reThrow');
     const payload = {
       domainid: 1234,
       ns_type: 'vd',
@@ -76,7 +76,7 @@ describe('requestUpdateDnsConf', () => {
 
     await requestUpdateDnsConf('example.com', 'XXXX', payload);
 
-    expect(spiedReThrowOrExit).toHaveBeenCalledWith(
+    expect(spiedReThrow).toHaveBeenCalledWith(
       UpdateDnsRecordsError.message,
       UpdateDnsRecordsError.code,
       err

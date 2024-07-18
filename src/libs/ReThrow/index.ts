@@ -1,13 +1,9 @@
-import { getErrorOrExit } from '../GetErrorOrExit';
+import { getError } from '../GetError';
 import { MyError } from '../MyError';
 
-type ReThrowOrExitFunc = (
-  message: string,
-  exitCode: number,
-  cause?: unknown
-) => never;
+type ReThrow = (message: string, exitCode: number, cause?: unknown) => never;
 
-export const reThrowOrExit: ReThrowOrExitFunc = (
+export const reThrow: ReThrow = (
   message: string,
   exitCode: number,
   cause?: unknown
@@ -15,7 +11,7 @@ export const reThrowOrExit: ReThrowOrExitFunc = (
   if (cause === undefined) {
     throw new MyError(message, exitCode);
   } else {
-    const err = getErrorOrExit(cause);
+    const err = getError(cause);
     throw new MyError(message, exitCode, err);
   }
 };

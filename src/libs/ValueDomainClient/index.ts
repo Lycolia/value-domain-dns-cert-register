@@ -5,7 +5,7 @@ import {
   GetDnsRecordsError,
   UpdateDnsRecordsError,
 } from '../../resources/ErrorDefines';
-import { reThrowOrExit } from '../ReThrowOrExit';
+import { reThrow } from '../ReThrow';
 
 const baseUrl = 'https://api.value-domain.com/v1';
 
@@ -32,7 +32,7 @@ export const requestGetDnsConf = async (
     Logger.info('Got DNS records', JSON.stringify(data.results));
     return data.results;
   } catch (err) {
-    reThrowOrExit(GetDnsRecordsError.message, GetDnsRecordsError.code, err);
+    reThrow(GetDnsRecordsError.message, GetDnsRecordsError.code, err);
   }
 };
 
@@ -55,10 +55,6 @@ export const requestUpdateDnsConf = async (
     Logger.info('Updated DNS records', JSON.stringify(data.results));
     return data.results;
   } catch (err) {
-    reThrowOrExit(
-      UpdateDnsRecordsError.message,
-      UpdateDnsRecordsError.code,
-      err
-    );
+    reThrow(UpdateDnsRecordsError.message, UpdateDnsRecordsError.code, err);
   }
 };
