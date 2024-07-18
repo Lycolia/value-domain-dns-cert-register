@@ -6,10 +6,10 @@
     "plugin:jest/style",
     "plugin:jest/recommended",
     "@lycolia/eslint-config",
-    "prettier",
+    "prettier"
   ],
   "plugins": ["@typescript-eslint"],
   "parserOptions": {
-    "project": "./tsconfig.json",
-  },
+    "project": "./tsconfig.json"
+  }
 }
