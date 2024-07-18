@@ -6,8 +6,7 @@ export type VdDnsAPIResponse = {
     ns_type: string;
     /** DNSレコード文字列、コメントは除去されてくる */
     records: string;
-    /** "60"とかの数字文字列 */
-    ttl: string;
+    ttl: number;
   };
   /** "20190502412345678" */
   request_id: string;
@@ -19,6 +18,6 @@ export type VdDnsUpdateRequest = {
   ns_type: string;
   /** DNSレコード文字列 */
   records: string;
-  /** "60"とかの数字文字列 */
-  ttl: string;
+  /** TODO: 今のところ送っても機能してない模様 */
+  ttl: number;
 };
