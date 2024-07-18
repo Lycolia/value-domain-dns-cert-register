@@ -3,7 +3,7 @@ import { Logger } from '../Logger';
 import { VdDnsAPIResponse, VdDnsUpdateRequest } from '../../types/VdDnsAPI';
 import {
   GetDnsRecordsError,
-  UpdateDnsRecordsError,
+  UpdateDnsRecordsError
 } from '../../resources/ErrorDefines';
 import { reThrow } from '../ReThrow';
 
@@ -24,8 +24,8 @@ export const requestGetDnsConf = async (
       `${baseUrl}/domains/${rootDomain}/dns`,
       {
         headers: {
-          Authorization: `Bearer ${apiToken}`,
-        },
+          Authorization: `Bearer ${apiToken}`
+        }
       }
     );
 
@@ -41,14 +41,16 @@ export const requestUpdateDnsConf = async (
   apiToken: string,
   updateRecords: VdDnsUpdateRequest
 ) => {
+  Logger.info('Request update DNS records', JSON.stringify(updateRecords));
+
   try {
     const { data } = await axios.put(
       `${baseUrl}/domains/${rootDomain}/dns`,
       updateRecords,
       {
         headers: {
-          Authorization: `Bearer ${apiToken}`,
-        },
+          Authorization: `Bearer ${apiToken}`
+        }
       }
     );
 
