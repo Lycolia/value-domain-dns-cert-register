@@ -1,5 +1,5 @@
 import { ArgumentLengthError } from '../../resources/ErrorDefines';
-import { reThrowOrExit } from '../ReThrowOrExit';
+import { reThrow } from '../ReThrow';
 import { version } from '../../../package.json';
 
 export const getArguments = (argv: string[]) => {
@@ -14,6 +14,6 @@ export const getArguments = (argv: string[]) => {
       apiToken: accessToken.trim(),
     };
   } else {
-    reThrowOrExit(ArgumentLengthError.message, ArgumentLengthError.code);
+    reThrow(ArgumentLengthError.message, ArgumentLengthError.code);
   }
 };
