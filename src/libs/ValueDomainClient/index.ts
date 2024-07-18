@@ -41,7 +41,7 @@ export const requestUpdateDnsConf = async (
   apiToken: string,
   updateRecords: VdDnsUpdateRequest
 ) => {
-  Logger.info('Request update DNS records', JSON.stringify(updateRecords));
+  Logger.info('Request updating DNS records', JSON.stringify(updateRecords));
 
   try {
     const { data } = await axios.put(
