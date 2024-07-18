@@ -3,7 +3,7 @@ import { requestGetDnsConf, requestUpdateDnsConf } from '.';
 import * as ReThrow from '../ReThrow';
 import {
   GetDnsRecordsError,
-  UpdateDnsRecordsError,
+  UpdateDnsRecordsError
 } from '../../resources/ErrorDefines';
 
 jest.mock('axios');
@@ -19,8 +19,8 @@ describe('requestGetDnsConf', () => {
       'https://api.value-domain.com/v1/domains/example.com/dns',
       {
         headers: {
-          Authorization: 'Bearer XXXX',
-        },
+          Authorization: 'Bearer XXXX'
+        }
       }
     );
   });
@@ -47,7 +47,7 @@ describe('requestUpdateDnsConf', () => {
       domainid: 1234,
       ns_type: 'vd',
       records: 'aaaaaa',
-      ttl: '60',
+      ttl: 60
     };
 
     await requestUpdateDnsConf('example.com', 'XXXX', payload);
@@ -57,8 +57,8 @@ describe('requestUpdateDnsConf', () => {
       payload,
       {
         headers: {
-          Authorization: 'Bearer XXXX',
-        },
+          Authorization: 'Bearer XXXX'
+        }
       }
     );
   });
@@ -71,7 +71,7 @@ describe('requestUpdateDnsConf', () => {
       domainid: 1234,
       ns_type: 'vd',
       records: 'aaaaaa',
-      ttl: '60',
+      ttl: 60
     };
 
     await requestUpdateDnsConf('example.com', 'XXXX', payload);
