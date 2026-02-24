@@ -2,7 +2,7 @@
 
 本スクリプトはメンテナンスを停止しました。恐らくしばらくの間は動きますが利用は非推奨です。
 
-このリポジトリで開発していたものは[value-domain-dns-utilに同梱のおまけ](https://github.com/Lycolia/value-domain-dns-util/tree/main#vd-dcrsh-value-domain%E3%81%A7certbot%E3%81%AEdns%E8%AA%8D%E8%A8%BC%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%84%E3%83%BC%E3%83%AB)に引き継いでいますので、こちらをご利用ください。
+このリポジトリで開発していたものは[value-domain-dns-util](https://github.com/Lycolia/value-domain-dns-util)に引き継いでいますので、こちらをご利用ください。
 
 # Value-Domain DNS Cert Register
 
